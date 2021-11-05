@@ -7,7 +7,7 @@ const routerApi = require('./routes'); // Archivo de Rutas
 const { logErrors, errorHandler, boomErrorHandler} = require('./middlewares/error.handler'); // Middleware de Manejo de Errores
 
 const app = express();
-const port = 3000;
+const port = process.env.PORT || 3000;
 
 app.use(express.json()); //Permite el envio de peticion tipo JSON 
 
