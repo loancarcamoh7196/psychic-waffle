@@ -10,6 +10,17 @@ const usersRouter = require('./users.router');
 const routerApi = (app) => {
     const router = express.Router();
 
+    app.get('/', (req, res)=>{
+        res.send("Mi tienda en express");
+    });
+    
+    
+    app.get('/otraRuta', (req, res)=>{
+        res.send("Mi otra tienda en express");
+    });
+    
+    
+
     app.use('/api/v1',router);
     router.use('/products', productsRouter);
     router.use('/categories', categoriesRouter);

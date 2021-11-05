@@ -1,5 +1,7 @@
 const express = require('express');
 const ProductsService = require('../services/product.service');
+const validationHandler = require('../middlewares/validation.handler');
+const { createProductSchema, updateProductSchema, getProductSchema } = require('../schemas/products.schemas');
 
 const router = express.Router();// Llama librería para generar Routing
 const service = new ProductsService();
@@ -17,21 +19,28 @@ router.get('/', async (req, res) => {
 /**
  * GET Busca un Producto
  */
-router.get('/:id', async (req, res) => {
-    const { id } = req.params;
-    const product = await service.findOne(id);
-    res.json(product);
+router.get('/:id',
+    validationHandler(getProductSchema, 'params'),
+    async (req, res, next) => {
+        try {
+            const { id } = req.params;
+            const product = await service.findOne(id);
+            res.json(product);
+        } catch (error) {
+            return next(error);
+        }
 });
 
 /**
  * POST Crea Producto
  */
-router.post('/', async (req, res) => {
-    const body = req.body;
-    const newProduct = await service.create(body);
+router.post('/', 
+    validationHandler(createProductSchema, 'body'),
+    async (req, res) => {
+        const body = req.body;
+        const newProduct = await service.create(body);
 
-    res
-        .status(201)
+        res.status(201)
         .json({
             'message': 'Products successful created',
             'data': newProduct

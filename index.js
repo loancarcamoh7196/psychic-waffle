@@ -2,29 +2,46 @@
  * Archivo de Configuracion de Server
  */
 const express = require('express');
+const cors = require('cors');
 const routerApi = require('./routes'); // Archivo de Rutas
-const { logErrors, errorHandler} = require('./middlewares/error.handler'); // Middleware de Manejo de Errores
-
+const { logErrors, errorHandler, boomErrorHandler} = require('./middlewares/error.handler'); // Middleware de Manejo de Errores
 
 const app = express();
 const port = 3000;
 
-app.use(express.json());
+app.use(express.json()); //Permite el envio de peticion tipo JSON 
 
-app.get('/', (req, res)=>{
-    res.send("Mi tienda en express");
-});
+// Whitlist de acceso a api, tener en cuenta 
+const whitelist = ['http://localhost:8080','https://myapp.com','http://127.0.0.1:5500', 'http://localhost:5500'];
+
+//configuracion de aceso CORS
+const options = {
+    origin: (origin, callback) => {
+        if(whitelist.includes(origin)) {
+            callback(null, true);
+        } else callback(new Error('NO permitido'))
+    }
+
+    // 'Access-Control-Allow-Origin': 'http://127.0.0.1:5500/'
+};
+
+app.use(cors(options)); // Obliga a toda la app a usar CORS
 
 
-app.get('/otraRuta', (req, res)=>{
-    res.send("Mi otra tienda en express");
-});
+
+
 
 routerApi(app);// Router de server
-app.use(logErrors);// Error en consola
-app.use(errorHandler); //Error a usuario
 
-app.listen(port, () =>{
+
+
+
+app.use(logErrors);// Error en consola
+app.use(boomErrorHandler); // Error tipo boom
+app.use(errorHandler); 
+
+
+app.listen(port, () => {
     console.log('Buen día...')
     console.log(`Servidor escuchando en el puerto http://localhost:${ port }`);
 });
