@@ -17,7 +17,7 @@ const whitelist = ['http://localhost:8080','https://myapp.com','http://127.0.0.1
 //configuracion de aceso CORS
 const options = {
     origin: (origin, callback) => {
-        if(whitelist.includes(origin)) {
+        if(whitelist.includes(origin) || !origin) {
             callback(null, true);
         } else callback(new Error('NO permitido'))
     }
