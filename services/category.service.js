@@ -1,9 +1,11 @@
+const pool = require('../libs/postgres.pool');
 const boom = require('@hapi/boom');
 
 class CategoryService {
 
     constructor(){
     }
+
     async create(data) {
         return data;
     }

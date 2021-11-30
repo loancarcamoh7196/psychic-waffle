@@ -1,5 +1,6 @@
 /**
  * Librería de Conexion con PostgreSQL
+ * forma NO recomendada
  * API con  [Docker] - [PostgreSQL]
  */
 const { Client } = require('pg');
