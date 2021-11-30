@@ -1,7 +1,7 @@
 const express = require('express');
 const ProductsService = require('../services/product.service');
 const validationHandler = require('../middlewares/validation.handler');
-const { createProductSchema, updateProductSchema, getProductSchema } = require('../schemas/product.schemas');
+const { createProductSchema, updateProductSchema, getProductSchema } = require('../schemas/product.schema');
 
 const router = express.Router();// Llama librería para generar Routing
 const service = new ProductsService();

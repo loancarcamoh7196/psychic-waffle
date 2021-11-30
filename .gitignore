@@ -126,6 +126,7 @@ dist
 # Serverless Webpack directories
 .webpack/
 
-### Carpeta de 
+### Carpeta de Volumen de PosgreSQL
+postgres_data
 
 # End of https://www.toptal.com/developers/gitignore/api/node
