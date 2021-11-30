@@ -1,3 +1,6 @@
+/**
+ * Schema de tabla Category
+ */
 const Joi = require('joi');
 
 const id = Joi.number().integer();

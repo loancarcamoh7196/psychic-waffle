@@ -1,3 +1,6 @@
+/**
+ * Archivo de Manejo de Variables de Entorno
+ */
 require('dotenv').config();
 
 const config = {

@@ -4,7 +4,7 @@ services:
   postgres:
     image: postgres:13
     environment:
-      - POSTGRES_DB=my_store
+      - POSTGRES_DB=${PG_DATABASE}
       - POSTGRES_USER=lorena
       - POSTGRES_PASSWORD=admin123
     ports:

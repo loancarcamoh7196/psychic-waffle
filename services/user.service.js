@@ -1,10 +1,9 @@
-const pool = require('../libs/postgres.pool');
+const sequelize = require('../libs/sequelize');
 const boom = require('@hapi/boom');
 
 class UserService {
     constructor() {
-        this.pool = pool;
-        this.pool.on('error', (err) => console.error(err));
+        
     }
 
     async create(data) {
@@ -12,8 +11,8 @@ class UserService {
     }
 
     async find() {
-        const rta = await pool.query('SELECT * FROM task');
-        return rta.rows;
+        const [data] = await sequelize.query('SELECT * FROM task');
+        return [data];
     }
 
     async findOne(id) {
