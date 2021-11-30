@@ -6,7 +6,7 @@ const config = {
     dbUser:  process.env.PG_USER,
     dbPassword:  process.env.PG_PASSWORD,
     dbHost:  process.env.PG_HOST,
-    dbName:  process.env.PG_NAME,
+    dbName:  process.env.PG_DATABASE,
     dbPort:  process.env.PG_PORT,
 }
 
