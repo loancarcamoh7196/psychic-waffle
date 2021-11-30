@@ -6,15 +6,14 @@
  * 
  */
 const { Pool } = require('pg');
+const { config } = require('../config');
+
+const USER = encodeURIComponent(config.dbHost);
+const PASSWORD = encodeURIComponent(config.database);
+const URI = `postgres://${USER}:${PASSWORD}@${config.dbHost}:${config.dbPort}/${config.dbName}`;
 
 
-const pool  = new  Pool ({
-    host: 'localhost',
-    port: 5432,
-    user: 'lorena',
-    password: 'admin123',
-    database: 'my_store'
-});
+const pool  = new  Pool ({ connectionString: URI });
 
 
 
