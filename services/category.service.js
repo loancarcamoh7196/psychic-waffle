@@ -4,6 +4,8 @@ const boom = require('@hapi/boom');
 class CategoryService {
 
     constructor(){
+        this.pool = pool;
+        this.pool.on('error', (err) => console.error(err));
     }
 
     async create(data) {
