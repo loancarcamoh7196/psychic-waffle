@@ -1,4 +1,4 @@
-const sequelize = require('../libs/sequelize');
+const { models } = require('../libs/sequelize');
 const boom = require('@hapi/boom');
 
 class UserService {
@@ -11,8 +11,8 @@ class UserService {
     }
 
     async find() {
-        const [data] = await sequelize.query('SELECT * FROM task');
-        return [data];
+        const rta = await models.User.findAll();
+        return rta;
     }
 
     async findOne(id) {
