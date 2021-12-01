@@ -4,7 +4,7 @@
 const express = require('express');
 const cors = require('cors');
 const routerApi = require('./routes'); // Archivo de Rutas
-const { logErrors, errorHandler, boomErrorHandler} = require('./middlewares/error.handler'); // Middleware de Manejo de Errores
+const { logErrors, errorHandler, queryErrorHandler,boomErrorHandler} = require('./middlewares/error.handler'); // Middleware de Manejo de Errores
 
 const app = express();
 const port = process.env.PORT || 3000;
@@ -12,7 +12,12 @@ const port = process.env.PORT || 3000;
 app.use(express.json()); //Permite el envio de peticion tipo JSON 
 
 // Whitlist de acceso a api, tener en cuenta 
-const whitelist = ['http://localhost:8080','https://myapp.com','http://127.0.0.1:5500', 'http://localhost:5500'];
+const whitelist = [
+    'http://localhost:8080',
+    'https://myapp.com',
+    'http://127.0.0.1:5500',
+    'http://localhost:5500'
+];
 
 //configuracion de aceso CORS
 const options = {
@@ -28,20 +33,18 @@ const options = {
 app.use(cors(options)); // Obliga a toda la app a usar CORS
 
 
-
-
-
 routerApi(app);// Router de server
 
 
-
-
 app.use(logErrors);// Error en consola
+app.use(queryErrorHandler); // Errores de lib sequelize
 app.use(boomErrorHandler); // Error tipo boom
-app.use(errorHandler); 
+
+app.use(errorHandler);
+
 
 
 app.listen(port, () => {
     console.log('Buen día...')
-    console.log(`Servidor escuchando en el puerto http://localhost:${ port }`);
+    console.log(`Servidor escuchando en el puerto http://localhost:${ port } \n`);
 });
