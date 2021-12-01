@@ -3,11 +3,12 @@
  */
 const express = require('express');
 const cors = require('cors');
+const { config } = require('./config'); // Variables de entorno
 const routerApi = require('./routes'); // Archivo de Rutas
 const { logErrors, errorHandler, ormErrorHandler,boomErrorHandler} = require('./middlewares/error.handler'); // Middleware de Manejo de Errores
 
 const app = express();
-const port = process.env.PORT || 3000;
+// const port = process.env.PORT || 3000;
 
 app.use(express.json()); //Permite el envio de peticion tipo JSON 
 
@@ -43,7 +44,8 @@ app.use(errorHandler);
 
 
 
-app.listen(port, () => {
-    console.log('Buen día...')
-    console.log(`Servidor escuchando en el puerto http://localhost:${ port } \n`);
+app.listen(config.port, () => {
+    console.log('😊 Buen día...');
+    console.log('El servidor esta en ambiente: ', config.env);
+    console.log(`Escuchando en: http://localhost:${ config.port } \n`);
 });
