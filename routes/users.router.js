@@ -1,11 +1,11 @@
 const express = require('express');
 
-const UserService = require('../services/user.service');
-const validatorHandler = require('../middlewares/validation.handler');
-const { updateUserSchema, createUserSchema, getUserSchema } = require('../schemas/user.schema');
+const UserService = require('../services/user.service'); // Controlador/Servicio asociado a User
+const validatorHandler = require('../middlewares/validation.handler'); // Manejador de Errores
+const { updateUserSchema, createUserSchema, getUserSchema } = require('../schemas/user.schema'); // Schema de validación de Datos
 
-const router = express.Router();
-const service = new UserService();
+const router = express.Router(); // Manejador de Rutas
+const service = new UserService(); 
 
 /**
  * Ruta GET /users
@@ -23,7 +23,10 @@ router.get(
     }
 );
 
-
+/**
+ * Ruta GET /users/:id
+ * Obtien info de un usario especificado por ID
+ */
 router.get(
     '/:id',
     validatorHandler(getUserSchema, 'params'),
@@ -38,6 +41,10 @@ router.get(
     }
 );
 
+/**
+ * Ruta POST /users
+ * Agrega nuevo usuario
+ */
 router.post(
     '/',
     validatorHandler(createUserSchema, 'body'),
@@ -52,6 +59,10 @@ router.post(
     }
 );
 
+/**
+ * Ruta PATCH /users/:id
+ * Realiza cambios a usuario especificaco por ID
+ */
 router.patch(
     '/:id',
     validatorHandler(getUserSchema, 'params'),
@@ -68,6 +79,10 @@ router.patch(
     }
 );
 
+/**
+ * Ruta DELETE /users/:id
+ * Elimina usario especificado por ID
+ */
 router.delete(
     '/:id',
     validatorHandler(getUserSchema, 'params'),

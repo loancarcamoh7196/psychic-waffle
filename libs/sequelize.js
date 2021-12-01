@@ -15,7 +15,8 @@ const URI = `postgres://${USER}:${PASSWORD}@${config.dbHost}:${config.dbPort}/${
 
 const sequelize = new Sequelize( URI, {
     dialect: 'postgres',
-    logging: (...msg) => console.log(msg),
+    // logging: (...msg) => console.log(msg),
+    logging: console.log(),
 });
 
 setupModels(sequelize); // Crea todas las tables declaradas en pool de modelos
