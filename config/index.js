@@ -11,16 +11,12 @@ const config = {
     postgres: {
         dbUser:  process.env.PG_USER,
         dbPassword:  process.env.PG_PASSWORD,
-        dbHost:  process.env.PG_HOST,
-        dbName:  process.env.PG_DATABASE,
         dbPort:  process.env.PG_PORT,
     },
 
     mysql: {
         dbUser:  process.env.MYSQL_USER,
         dbPassword:  process.env.MYSQL_PASSWORD,
-        dbHost:  process.env.PG_HOST,
-        dbName:  process.env.DB_NAME,
         dbPort:  process.env.MYSQL_PORT,
     }
 }

@@ -20,7 +20,7 @@ const URI = `mysql://${USER}:${PASSWORD}@${config.dbHost}:${config.mysql.dbPort}
 
 
 const sequelize = new Sequelize( URI, {
-    dialect: 'mysql', // Cambiar esta linea y comentar 
+    dialect: 'mysql', /* Cambiar esta linea y comentar  USER  ; PASSWORD ; URI */
     // logging: (...msg) => console.log(msg),
     logging: console.log(),
 });
