@@ -4,7 +4,7 @@
 const express = require('express');
 const cors = require('cors');
 const routerApi = require('./routes'); // Archivo de Rutas
-const { logErrors, errorHandler, queryErrorHandler,boomErrorHandler} = require('./middlewares/error.handler'); // Middleware de Manejo de Errores
+const { logErrors, errorHandler, ormErrorHandler,boomErrorHandler} = require('./middlewares/error.handler'); // Middleware de Manejo de Errores
 
 const app = express();
 const port = process.env.PORT || 3000;
@@ -37,7 +37,7 @@ routerApi(app);// Router de server
 
 
 app.use(logErrors);// Error en consola
-app.use(queryErrorHandler); // Errores de lib sequelize
+app.use(ormErrorHandler); // Errores de lib sequelize
 app.use(boomErrorHandler); // Error tipo boom
 app.use(errorHandler);
 

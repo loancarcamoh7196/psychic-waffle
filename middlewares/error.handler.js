@@ -6,10 +6,12 @@
  * 
  * *** Orden correcto
  * 1.- logErrors
- * 2.- queryErrorHandler
+ * 2.- ormErrorHandler
  * 3.- boomErrorHabdler 
  * 4.- errorHandler
  */
+const { ValidationError } = require('sequelize');
+
 
 /**
  * Función que muestra error en consola
@@ -26,20 +28,22 @@ const logErrors = (err, req, res, next) =>{
 const errorHandler = (err, req, res, next) => {
     // console.log(`*****  status code: ${err}  ****`)
     res.status(500).json({
+        statusCode: 500,
         message: err.message,
         stack: err.stack,
     });
     next(err);
 }
 
-const queryErrorHandler= (err, req, res, next) => {
-    if (err.parent) {
-        const { parent } = err; // Acceso detalle del query error
-        res.status(500).json({
-            message: parent.detail,
+const ormErrorHandler= (err, req, res, next) => {
+    if (err instanceof ValidationError) {
+        res.status(409).json({
+        statusCode: 409,
+        message: err.name,
+        errors: err.errors
         });
     }
-  next(err);
+    next(err);
 }
 
 const boomErrorHandler = (err, req, res, next) => {
@@ -50,4 +54,4 @@ const boomErrorHandler = (err, req, res, next) => {
     next(err);
 }
 
-module.exports = { logErrors, errorHandler, queryErrorHandler,boomErrorHandler }
+module.exports = { logErrors, errorHandler, ormErrorHandler,boomErrorHandler }
