@@ -8,13 +8,19 @@ const { Sequelize } = require('sequelize');
 const { config } = require('../config'); // Configuración de Variables de Entorno
 const setupModels = require('../db/models'); // Pool de modelo BD
 
-const USER = encodeURIComponent(config.dbUser);
-const PASSWORD = encodeURIComponent(config.dbPassword);
-const URI = `postgres://${USER}:${PASSWORD}@${config.dbHost}:${config.dbPort}/${config.dbName}`;
+// const USER = encodeURIComponent(config.postgres.dbUser);
+// const PASSWORD = encodeURIComponent(config.postgres.dbPassword);
+// const URI = `postgres://${USER}:${PASSWORD}@${config.dbHost}:${config.postgres.dbPort}/${config.dbName}`;
+
+
+const USER = encodeURIComponent(config.mysql.dbUser);
+const PASSWORD = encodeURIComponent(config.mysql.dbPassword);
+const URI = `mysql://${USER}:${PASSWORD}@${config.dbHost}:${config.mysql.dbPort}/${config.dbName}`;
+
 
 
 const sequelize = new Sequelize( URI, {
-    dialect: 'postgres',
+    dialect: 'mysql', // Cambiar esta linea y comentar 
     // logging: (...msg) => console.log(msg),
     logging: console.log(),
 });

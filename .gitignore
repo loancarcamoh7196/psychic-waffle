@@ -129,4 +129,7 @@ dist
 ### Carpeta de Volumen de PosgreSQL
 postgres_data
 
+### Carpeta de Volumen MySQL
+mysql_data
+
 # End of https://www.toptal.com/developers/gitignore/api/node
