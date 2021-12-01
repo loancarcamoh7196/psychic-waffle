@@ -39,7 +39,6 @@ routerApi(app);// Router de server
 app.use(logErrors);// Error en consola
 app.use(queryErrorHandler); // Errores de lib sequelize
 app.use(boomErrorHandler); // Error tipo boom
-
 app.use(errorHandler);
 
 

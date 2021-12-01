@@ -33,12 +33,12 @@ const errorHandler = (err, req, res, next) => {
 }
 
 const queryErrorHandler= (err, req, res, next) => {
-  if (err.parent) {
-    const { parent } = err; // Acceso detalle del query error
-    res.status(500).json({
-      message: parent.detail,
-    });
-  }
+    if (err.parent) {
+        const { parent } = err; // Acceso detalle del query error
+        res.status(500).json({
+            message: parent.detail,
+        });
+    }
   next(err);
 }
 
