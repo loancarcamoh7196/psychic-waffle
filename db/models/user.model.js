@@ -3,7 +3,7 @@
  */
 const { Model, DataTypes, Sequelize } = require('sequelize');
 
-const tableName = 'users';
+const USER_TABLE = 'users';
 
 const UserSchema = {
     id: {
@@ -21,6 +21,11 @@ const UserSchema = {
         allowNull: false,
         type: DataTypes.STRING,
     },
+    role: {
+        allowNull: false,
+        type: DataTypes.STRING,
+        defaultValue: 'customer'
+    },
     createAt: {
         allowNull: false,
         type: DataTypes.DATE,
@@ -34,7 +39,7 @@ class User extends Model {
     static config(sequelize) {
         return {
             sequelize,
-            tableName,
+            tableName: USER_TABLE,
             modelName: 'User',
             timestamps: false
         };
@@ -47,7 +52,7 @@ class User extends Model {
 }
 
 module.exports = {
-    tableName,
+    USER_TABLE,
     UserSchema,
     User
 }
