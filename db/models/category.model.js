@@ -3,7 +3,7 @@
  */
 const { Model, DataTypes, Sequelize } = require('sequelize');
 
-const tableName = 'categories';
+const CATEGORY_TABLE = 'categories';
 
 const CategorySchema = {
     id: {
@@ -27,7 +27,7 @@ class Category extends Model {
     static config(sequelize) {
         return {
             sequelize,
-            tableName,
+            CATEGORY_TABLE,
             modelName: 'Category',
             timestamps: false
         };
@@ -40,7 +40,7 @@ class Category extends Model {
 }
 
 module.exports = {
-    tableName,
+    CATEGORY_TABLE,
     CategorySchema,
     Category
 }

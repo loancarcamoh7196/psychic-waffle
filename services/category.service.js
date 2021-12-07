@@ -1,3 +1,6 @@
+/**
+ * Servicio / Controlador de Customer
+ */
 const pool = require('../libs/postgres.pool');
 const boom = require('@hapi/boom');
 
