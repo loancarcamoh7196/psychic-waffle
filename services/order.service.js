@@ -1,12 +1,12 @@
-const pool = require('../libs/postgres.pool');
+/**
+ * * Servicio / Controlador de Order
+ */
 const boom = require('@hapi/boom');
+const { models } = require('../libs/sequelize');
 
 class OrderService {
 
-    constructor(){
-        this.pool = pool;
-        this.pool.on('error', (err) => console.error(err));
-    }
+    constructor(){ }
     
     async create(data) {
         return data;

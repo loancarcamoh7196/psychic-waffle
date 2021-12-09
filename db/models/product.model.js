@@ -1,7 +1,8 @@
 /**
- * Modelo Producto para ORM
+ * * Modelo Producto para ORM
  */
 const { Model, DataTypes, Sequelize } = require('sequelize');
+const { CATEGORY_TABLE } = require('./category.model');
 
 const PRODUCT_TABLE =  'products';
 
@@ -10,21 +11,43 @@ const ProductSchema = {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
-        type: DataTypes.INTEGER,
+        type: DataTypes.INTEGER
     },
     name: {
         allowNull: false,
-        type: DataTypes.STRING,
+        type: DataTypes.STRING
     },
     price: {
         allowNull: false,
-        type: DataTypes.INTEGER,
+        type: DataTypes.INTEGER
+    },
+    description: {
+        allowNull: false,
+        type: DataTypes.INTEGER
     },
     image: {
         allowNull: true,
         type: DataTypes.BLOB
     },
-}
+    createdAt: {
+        allowNull: false,
+        type: DataTypes.DATE,
+        field: 'created_at',
+        defaultValue: Sequelize.NOW
+    },
+    categoryID: {
+        field: 'category_id',
+        allowNull: false,
+        type: DataTypes.INTEGER,
+        unique: true,
+        references: {
+            model: CATEGORY_TABLE,
+            key: 'id'
+        },
+        onUpdate: 'CASCADE',
+        onDelete: 'SET NULL'
+    }
+};
 
 class Product extends Model {
     
@@ -37,8 +60,9 @@ class Product extends Model {
         };
     }
 
-    static associate() {
+    static associate(models) {
         //Asociaciones
+        this.belongsTo(models.Category, { as: 'category'})
     }
 }
 

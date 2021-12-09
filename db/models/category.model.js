@@ -12,14 +12,21 @@ const CategorySchema = {
         primaryKey: true,
         type: DataTypes.INTEGER,
     },
-     name: {
+    name: {
         allowNull: false,
+        unique: true,
         type: DataTypes.STRING,
     },
     image: {
         allowNull: true,
         type: DataTypes.BLOB
     },
+    createdAt: {
+        allowNull: false,
+        type: DataTypes.DATE,
+        field: 'created_at',
+        defaultValue: Sequelize.NOW,
+    }
 }
 
 class Category extends Model {
@@ -33,8 +40,12 @@ class Category extends Model {
         };
     }
 
-    static associate() {
+    static associate(models) {
         //Asociaciones
+        this.hasMany(models.Product, {
+            as: 'products',
+            foreignKey: 'categoryId'
+        });
     }
 
 }

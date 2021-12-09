@@ -7,13 +7,18 @@ const router = express.Router();// Llama librería para generar Routing
 const service = new ProductsService();
 
 /**
- * GET Obtiene Productos
+ * * GET /products
+ * Obtiene lista  Productos
  */
 router.get('/', async (req, res) => {
-    const { size } = req.query; 
-    const limit = size || 10;
-    const products = await service.find();
-    res.json(products);
+    // const { size } = req.query; 
+    // const limit = size || 10;
+    try {
+        const products = await service.find();
+        res.json(products);
+    } catch (error) {
+        next(error);
+    }
 });
 
 /**
