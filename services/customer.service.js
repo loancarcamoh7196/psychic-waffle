@@ -1,5 +1,5 @@
 /**
- * * Servicio / Controlador de Custumer
+ * * Servicio / Controlador de Customer
  */
 const boom = require('@hapi/boom');
 const { models } = require('../libs/sequelize');

@@ -1,5 +1,5 @@
 /**
- * * Schema de validación de Datos de Prodcut
+ * * Schema de validación de Datos de Product
  */
 const Joi = require('joi');
 
@@ -11,17 +11,23 @@ const description = Joi.string().min(10);
 const image = Joi.string().max(50);
 const categoryId = Joi.number().integer();
 
+const price_min = Joi.number().integer();
+const price_max = Joi.number().integer();
+
+const limit = Joi.number().integer();
+const offset = Joi.number().integer();
+
 const createProductSchema = Joi.object({
-    name: name.required(),
-    price: price.required(),
-    description: description.required(),
+    name,
+    price,
+    description,
     image,
-    categoryId: categoryId.required()
+    categoryId,
 });
 
 const updateProductSchema = Joi.object({
-    name: name,
-    price: price,
+    name,
+    price,
     description,
     image,
     categoryId
@@ -31,8 +37,20 @@ const getProductSchema = Joi.object({
     id: id.required(),
 });
 
+const queryProductSchema = Joi.object({
+    limit,
+    offset,
+    price,
+    price_min,
+    price_max: price_max.greater(Joi.ref('price_min'))
+}).with('price_min', 'price_max')
+.with('price_max', 'price_min');
+
+
+
 module.exports = { 
     createProductSchema, 
     updateProductSchema, 
-    getProductSchema 
+    getProductSchema,
+    queryProductSchema
 }

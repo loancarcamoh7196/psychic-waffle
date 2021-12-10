@@ -2,8 +2,10 @@
  * *  Servicio / Controladorde Product
  */
 const faker = require('faker');
+const { Op } = require('sequelize');
 const boom = require('@hapi/boom');
 const { models } = require('../libs/sequelize');
+
 
 
 class ProductsService {
@@ -31,10 +33,28 @@ class ProductsService {
         return newProduct;
     }
 
-    async find() {
-        const products = await models.Product.findAll({
-            include: ['category']
-        });
+    async find(query) {
+        const options = { 
+            include: ['category'],
+            where: {}
+        };
+        
+        const { limit, offset, price, price_min, price_max } = query;
+
+        if (limit && offset) {
+            options.limit = limit;
+            options.offset = offset;
+        }
+
+        price && (options.price = price); // Si se ha mandado en query se consultar por price
+        
+        if (price_min && price_max) {
+            options.where.price = {
+                [Op.between]: [price_min, price_max]
+            };
+        }
+
+        const products = await models.Product.findAll(options);
         return products;
     }
 
