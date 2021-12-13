@@ -49,7 +49,7 @@ class Order extends Model {
     static config(sequelize) {
         return {
             sequelize,
-            ORDER_TABLE,
+            tableName: ORDER_TABLE,
             modelName: 'Order',
             timestamps: true
         };

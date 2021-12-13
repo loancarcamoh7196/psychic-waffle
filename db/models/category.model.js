@@ -2,7 +2,6 @@
  * Modelo de Category para ORM
  */
 const { Model, DataTypes, Sequelize } = require('sequelize');
-
 const CATEGORY_TABLE = 'categories';
 
 const CategorySchema = {
@@ -10,44 +9,44 @@ const CategorySchema = {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
-        type: DataTypes.INTEGER,
+        type: DataTypes.INTEGER
     },
     name: {
         allowNull: false,
-        unique: true,
         type: DataTypes.STRING,
+        unique: true
     },
     image: {
         allowNull: true,
-        type: DataTypes.BLOB
+        // type: DataTypes.BLOB
+        type: DataTypes.STRING
     },
     createdAt: {
         allowNull: false,
         type: DataTypes.DATE,
         field: 'created_at',
-        defaultValue: Sequelize.NOW,
+        defaultValue: Sequelize.fn('NOW')
     }
-}
+};
 
 class Category extends Model {
 
     static config(sequelize) {
         return {
             sequelize,
-            CATEGORY_TABLE,
+            tableName: CATEGORY_TABLE,
             modelName: 'Category',
             timestamps: false
         };
     }
 
+    //Asociaciones
     static associate(models) {
-        //Asociaciones
         this.hasMany(models.Product, {
             as: 'products',
             foreignKey: 'categoryId'
         });
     }
-
 }
 
 module.exports = {

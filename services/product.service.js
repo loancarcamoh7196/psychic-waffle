@@ -14,6 +14,9 @@ class ProductsService {
         this.generate();
     }
 
+    /**
+     * Genera Data para Producto
+     */
     generate() {
         const limit = 100;
         for (let index = 0; index < limit; index++) {
@@ -26,6 +29,11 @@ class ProductsService {
         }
     }
 
+    /**
+     * Crea / Agrega un nuevo Usuario
+     * @param {user} data 
+     * @returns string Resultado de operación
+     */
     async create(data) {
         const newProduct = await models.Product.create(
             data
@@ -33,6 +41,11 @@ class ProductsService {
         return newProduct;
     }
 
+    /**
+     * Lista de todos los productos del sistema
+     * @param {options} query Objcto con distintas opciones
+     * @returns lista de Productos
+     */
     async find(query) {
         const options = { 
             include: ['category'],

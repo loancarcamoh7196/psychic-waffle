@@ -1,16 +1,19 @@
+/**
+ * * Enrutador de servicio Categoria
+ */
 const express = require('express');
 
 const CategoryService = require('../services/category.service');
 const validatorHandler = require('../middlewares/validation.handler');
-const {
-    createCategorySchema,
-    updateCategorySchema,
-    getCategorySchema
-} = require('./../schemas/category.schema');
+const { createCategorySchema, updateCategorySchema, getCategorySchema } = require('./../schemas/category.schema');
 
 const router = express.Router();
 const service = new CategoryService();
 
+/**
+ * * GET /categories
+ * Obtiene lista de Categorias
+ */
 router.get('/', async (req, res, next) => {
     try {
         const categories = await service.find();
@@ -20,6 +23,10 @@ router.get('/', async (req, res, next) => {
     }
 });
 
+/**
+ * * GET /categories/:id
+ *  Busca una Categoria
+ */
 router.get(
     '/:id',
     validatorHandler(getCategorySchema, 'params'),
@@ -34,6 +41,10 @@ router.get(
     }
 );
 
+/**
+ * * POST /categories
+ * Crea Categoria
+ */
 router.post(
     '/',
     validatorHandler(createCategorySchema, 'body'),
@@ -48,6 +59,10 @@ router.post(
     }
 );
 
+/**
+ * * PATCH /categories/:id
+ * Actualiz algun campo de una categoria
+ */
 router.patch(
     '/:id',
     validatorHandler(getCategorySchema, 'params'),
@@ -64,6 +79,10 @@ router.patch(
     }
 );
 
+/**
+ * * DELETE /categories:id
+ * Actualiza algun campo de la Categoria
+ */
 router.delete(
     '/:id',
     validatorHandler(getCategorySchema, 'params'),

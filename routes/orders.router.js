@@ -1,5 +1,5 @@
 /**
- * * Servicio / Controlador de Order
+ * * Servicio / Controlador de Ordenes
  */
 const express = require('express');
 
@@ -12,6 +12,7 @@ const service = new OrderService();
 
 /**
  * * GET /orders
+ * Obtiene lista de Ordenes
  */
 router.get(
     '/:id',
@@ -29,6 +30,7 @@ router.get(
 
 /**
  * * POST /orders
+ * Crea una nueva Orden
  */
 router.post(
     '/',
@@ -45,9 +47,10 @@ router.post(
 );
 /**
  *  * POST /orders/add-item
- *  
+ *  Agreda products a la orden
  */
-router.post('/add-item', 
+router.post(
+    '/add-item', 
     validatorHandler(addItemSchema, 'body'),
     async (req, res, next) => {
         try {

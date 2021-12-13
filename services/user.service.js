@@ -5,7 +5,7 @@ const { models } = require('../libs/sequelize'); // Acceso a modelo creados por 
 const boom = require('@hapi/boom');
 
 class UserService {
-    constructor() {  }
+    constructor() {}
 
     /**
      * Crea/Agrega un nuevo Usuario
@@ -24,7 +24,7 @@ class UserService {
      */
     async find() {
         const rta = await models.User.findAll({
-          include: ['customer']
+            include: ['customer']
         });
         return rta;
     }

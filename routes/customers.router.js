@@ -1,3 +1,6 @@
+/**
+ * * Enrutador de servicio Customer
+ */
 const express = require('express');
 
 const CustomerService = require('../services/customer.service');
@@ -11,6 +14,10 @@ const {
 const router = express.Router();
 const service = new CustomerService();
 
+/**
+ * * GET /customers
+ * Otiene lista Customers
+ */
 router.get('/', async (req, res, next) => {
     try {
         res.json(await service.find());
@@ -19,6 +26,10 @@ router.get('/', async (req, res, next) => {
     }
 });
 
+/**
+ * * POST /customers/
+ * Crea un Cliente
+ */
 router.post(
     '/',
     validationHandler(createCustomerSchema, 'body'),
@@ -32,6 +43,10 @@ router.post(
     }
 );
 
+/**
+ * * PATCH /customers/:id
+ * Actualiza algun campo de un Cliente
+ */
 router.patch(
     '/:id',
     validationHandler(getCustomerSchema, 'params'),
@@ -47,6 +62,10 @@ router.patch(
     }
 );
 
+/**
+ * * DELETE /customers/:id
+ * Elimina registro de un Cliente especifico
+ */
 router.delete(
     '/:id',
     validationHandler(getCustomerSchema, 'params'),

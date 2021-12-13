@@ -2,8 +2,6 @@
  * Modelo de User para ORM
  */
 const { Model, DataTypes, Sequelize } = require('sequelize');
-
-
 const USER_TABLE = 'users';
 
 const UserSchema = {
@@ -11,16 +9,16 @@ const UserSchema = {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
-        type: DataTypes.INTEGER,
+        type: DataTypes.INTEGER
     },
-    email : {
+    email: {
         allowNull: false,
         type: DataTypes.STRING,
-        unique: true,
+        unique: true
     },
     password: {
         allowNull: false,
-        type: DataTypes.STRING,
+        type: DataTypes.STRING
     },
     role: {
         allowNull: false,
@@ -31,9 +29,9 @@ const UserSchema = {
         allowNull: false,
         type: DataTypes.DATE,
         field: 'create_at',
-        defaultValue: Sequelize.NOW
+        defaultValue: Sequelize.fn('NOW'),
     }
-}
+};
 
 class User extends Model {
     
@@ -46,14 +44,13 @@ class User extends Model {
         };
     }
 
+    //Asociaciones
     static associate(models) {
-        //Asociaciones
         this.hasOne(models.Customer, {
             foreignKey: 'userId',
             as: 'customer'
         });
     }
-
 }
 
 module.exports = {

@@ -1,3 +1,6 @@
+/**
+ * * Enrutador de servicio Productos
+ */
 const express = require('express');
 const ProductsService = require('../services/product.service');
 const validationHandler = require('../middlewares/validation.handler');
@@ -19,10 +22,8 @@ router.get(
     '/',
     validationHandler(queryProductSchema, 'query'),
     async (req, res, next) => {
-        // const { size } = req.query;
-        // const limit = size || 10;
         try {
-            const products = await service.find();
+            const products = await service.find(req.query);
             res.json(products);
         } catch (error) {
             return next(error);
@@ -31,7 +32,7 @@ router.get(
 );
 
 /**
- * * GET /prodducts/:id
+ * * GET /products/:id
  * Busca un Producto
  */
 router.get(

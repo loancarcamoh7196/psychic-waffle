@@ -1,3 +1,6 @@
+/**
+ * * Enrutador de servicio de Usuario
+ */
 const express = require('express');
 
 const UserService = require('../services/user.service'); // Controlador/Servicio asociado a User

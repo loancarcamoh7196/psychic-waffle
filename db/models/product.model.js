@@ -23,19 +23,20 @@ const ProductSchema = {
     },
     description: {
         allowNull: false,
-        type: DataTypes.INTEGER
+        type: DataTypes.STRING
     },
     image: {
         allowNull: true,
-        type: DataTypes.BLOB
+        // type: DataTypes.BLOB
+        type: DataTypes.STRING
     },
     createdAt: {
         allowNull: false,
         type: DataTypes.DATE,
         field: 'created_at',
-        defaultValue: Sequelize.NOW
+        defaultValue: Sequelize.fn('NOW')
     },
-    categoryID: {
+    categoryId: {
         field: 'category_id',
         allowNull: false,
         type: DataTypes.INTEGER,
@@ -54,7 +55,7 @@ class Product extends Model {
     static config(sequelize) {
         return {
             sequelize,
-            PRODUCT_TABLE,
+            tableName: PRODUCT_TABLE,
             modelName: 'Product',
             timestamps: false
         };
