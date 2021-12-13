@@ -5,9 +5,11 @@ require('dotenv').config();
 
 const config = {
     env: process.env.ENV || 'dev',
+    isProd: process.env.ENV === 'production',
     port: process.env.API_PORT || 3000,
     dbName:  process.env.DB_NAME,
     dbHost:  process.env.DB_HOST,
+    dbUrl: process.env.DATABASE_URL,
     postgres: {
         dbUser:  process.env.PG_USER,
         dbPassword:  process.env.PG_PASSWORD,
