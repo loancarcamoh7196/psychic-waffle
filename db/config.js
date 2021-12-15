@@ -1,5 +1,5 @@
 /**
- * Configuarcion de Migraciones de Sequelize ORM
+ * Configuaracion de Migraciones de Sequelize ORM
  */
 
 const { config } = require('../config'); // Configuración de Variables de Entorno
