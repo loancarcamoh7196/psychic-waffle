@@ -21,6 +21,8 @@ if (config.isProd) {
     options = {
         dialect: 'postgres',
         logging: false,
+    };
+    options.dialectOptions = {
         ssl: {
             rejectUnauthorized: false
         }
