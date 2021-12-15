@@ -35,9 +35,7 @@ const options = {
 
 app.use(cors(options)); // Obliga a toda la app a usar CORS
 
-app.get('/', (req, res) => {
-    res.send('Mi tienda en express');
-});
+
 
 routerApi(app);// Router de server
 
