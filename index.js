@@ -20,7 +20,7 @@ const whitelist = [
     'http://localhost:5500'
 ];
 
-//configuracion de aceso CORS
+//configuracion de acceso CORS
 const options = {
     origin: (origin, callback) => {
         if(whitelist.includes(origin) || !origin) {
