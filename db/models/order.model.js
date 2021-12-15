@@ -17,7 +17,6 @@ const OrderSchema = {
         field: 'customer_id',
         allowNull: false,
         type: DataTypes.INTEGER,
-        unique: true,
         references: {
             model: CUSTOMER_TABLE,
             key: 'id'
@@ -31,29 +30,33 @@ const OrderSchema = {
         field: 'created_at',
         defaultValue: Sequelize.fn('NOW')
     },
+    
+};
+
+const virtualField = {
     total: {
         type: DataTypes.VIRTUAL,
         get() {
-            if (this.items.length > 0) {
+            if (this.items.length() > 0) {
                 return this.items.reduce((total, item) => {
                     return (
                         total +
                         item.price *
-                            item.OrderProduct.amount
+                            item.OrderProduct.quantity
                     );
                 }, 0);
             } else return 0;
         }
     }
 };
-
 class Order extends Model {
     
     static config(sequelize) {
         return {
             sequelize,
             tableName: ORDER_TABLE,
-            modelName: 'Order'
+            modelName: 'Order',
+            timestamps: false
         };
     }
 
@@ -65,8 +68,7 @@ class Order extends Model {
             through: models.OrderProduct,
             foreignKey: 'orderId',
             otherKey: 'productId'
-        })
-
+        });
     }
 }
 
