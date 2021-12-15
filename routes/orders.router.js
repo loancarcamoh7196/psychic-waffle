@@ -11,7 +11,7 @@ const router = express.Router();
 const service = new OrderService();
 
 /**
- * * GET /orders
+ * * GET /orders/:id
  * Obtiene lista de Ordenes
  */
 router.get(

@@ -20,7 +20,7 @@ const routerApi = (app) => {
     router.use('/products', productsRouter);
     router.use('/categories', categoriesRouter);
     router.use('/users', usersRouter);
-    router.use('/customer', customerRouter);
+    router.use('/customers', customerRouter);
     router.use('/orders', ordersRouter);
 };
 

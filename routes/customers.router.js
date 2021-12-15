@@ -18,13 +18,15 @@ const service = new CustomerService();
  * * GET /customers
  * Otiene lista Customers
  */
-router.get('/', async (req, res, next) => {
-    try {
-        res.json(await service.find());
-    } catch (error) {
-        next(error);
+router.get(
+    '/', async (req, res, next) => {
+        try {
+            res.json(await service.find());
+        } catch (error) {
+            next(error);
+        }
     }
-});
+);
 
 /**
  * * POST /customers/
@@ -35,10 +37,10 @@ router.post(
     validationHandler(createCustomerSchema, 'body'),
     async (req, res, next) => {
         try {
-        const body = req.body;
-        res.status(201).json(await service.create(body));
+            const body = req.body;
+            res.status(201).json(await service.create(body));
         } catch (error) {
-        next(error);
+                next(error);
         }
     }
 );
@@ -53,11 +55,11 @@ router.patch(
     validationHandler(updateCustomerSchema, 'body'),
     async (req, res, next) => {
         try {
-        const { id } = req.params;
-        const body = req.body;
-        res.status(201).json(await service.update(id, body));
+            const { id } = req.params;
+            const body = req.body;
+            res.status(201).json(await service.update(id, body));
         } catch (error) {
-        next(error);
+            next(error);
         }
     }
 );
@@ -71,10 +73,10 @@ router.delete(
     validationHandler(getCustomerSchema, 'params'),
     async (req, res, next) => {
         try {
-        const { id } = req.params;
-        res.status(200).json(await service.delete(id));
+            const { id } = req.params;
+            res.status(200).json(await service.delete(id));
         } catch (error) {
-        next(error);
+            next(error);
         }
     }
 );

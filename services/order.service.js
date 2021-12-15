@@ -1,9 +1,8 @@
 /**
  * * Servicio / Controlador de Order
  */
-const boom = require('@hapi/boom');
 const { models } = require('../libs/sequelize');
-
+const boom = require('@hapi/boom');
 class OrderService {
     constructor() {}
 
@@ -13,9 +12,7 @@ class OrderService {
     }
 
     async addItem(data) {
-        const newItem = await models.OrderProduct.create(
-            data
-        );
+        const newItem = await models.OrderProduct.create(data);
         return newItem;
     }
 

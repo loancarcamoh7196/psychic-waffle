@@ -14,10 +14,19 @@ module.exports = {
      * }], {});
     */
    await  queryInterface.bulkInsert(USER_TABLE, [{
-    email: 'root@yardsale.cl',
-    password: 'mio_mio#71',
-    create_at: Sequelize.fn('NOW')
-   }],{});
+        email: 'root@yardsale.cl',
+        password: 'mio_mio#71',
+        created_at: Sequelize.fn('NOW')
+    },{
+        email: 'lo@yardsale.cl',
+        password: 'mio_mio#71',
+        created_at: Sequelize.fn('NOW')
+    },{
+        email: 'lo@love.cl',
+        password: 'mio_mio#71',
+        created_at: Sequelize.fn('NOW')
+    },
+    ],{});
   },
 
   down: async (queryInterface) => {

@@ -13,11 +13,10 @@ const OrderSchema = {
         primaryKey: true,
         type: DataTypes.INTEGER
     },
-    custumerId: {
+    customerId: {
         field: 'customer_id',
         allowNull: false,
         type: DataTypes.INTEGER,
-        unique: true,
         references: {
             model: CUSTOMER_TABLE,
             key: 'id'
@@ -25,25 +24,31 @@ const OrderSchema = {
         onUpdate: 'CASCADE',
         onDelete: 'SET NULL'
     },
-    // createdAt: {
-    //     allowNull: false,
-    //     type: DataTypes.DATE,
-    //     field: 'created_at',
-    //     defaultValue: Sequelize.NOW
-    // },
-    total :{
+    createdAt: {
+        allowNull: false,
+        type: DataTypes.DATE,
+        field: 'created_at',
+        defaultValue: Sequelize.fn('NOW')
+    },
+    
+};
+
+const virtualField = {
+    total: {
         type: DataTypes.VIRTUAL,
         get() {
-            if (this.items.length > 0) {
+            if (this.items.length() > 0) {
                 return this.items.reduce((total, item) => {
-                    return total + (item.price * item.OrderProduct.amount);
+                    return (
+                        total +
+                        item.price *
+                            item.OrderProduct.quantity
+                    );
                 }, 0);
-            }
-            return 0;
+            } else return 0;
         }
     }
 };
-
 class Order extends Model {
     
     static config(sequelize) {
@@ -51,7 +56,7 @@ class Order extends Model {
             sequelize,
             tableName: ORDER_TABLE,
             modelName: 'Order',
-            timestamps: true
+            timestamps: false
         };
     }
 
@@ -63,10 +68,8 @@ class Order extends Model {
             through: models.OrderProduct,
             foreignKey: 'orderId',
             otherKey: 'productId'
-        })
-
+        });
     }
-
 }
 
 module.exports = {
