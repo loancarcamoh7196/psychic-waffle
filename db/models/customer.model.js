@@ -31,10 +31,10 @@ const CustomerSchema = {
         allowNull: false,
         type:DataTypes.STRING,
     },
-    createAt: {
+    createdAt: {
         allowNull: false,
         type: DataTypes.DATE,
-        field: 'create_at',
+        field: 'created_at',
         defaultValue: Sequelize.fn('NOW')
     },
     userId: {
