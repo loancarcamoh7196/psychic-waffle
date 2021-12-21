@@ -22,9 +22,11 @@ if (config.isProd) {
         dialect: 'postgres',
         native: true,
         logging: false,
-        ssl: true,
         dialectOptions: {
-            ssl: true
+            ssl: {
+                require: true,
+                rejectUnauthorized: false
+            }
         }
     };
 
