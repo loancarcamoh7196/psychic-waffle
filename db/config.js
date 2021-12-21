@@ -15,13 +15,21 @@ const URI = `postgres://${USER}:${PASSWORD}@${config.dbHost}:${config.postgres.d
 // const PASSWORD = encodeURIComponent(config.mysql.dbPassword);
 // const URI = `mysql://${USER}:${PASSWORD}@${config.dbHost}:${config.mysql.dbPort}/${config.dbName}`;
 
+
 module.exports = {
     development: {
         url: URI,
-        dialect: 'postgres',
+        dialect: 'postgres'
     },
-    production : {
+    production: {
         url: config.dbUrl,
         dialect: 'postgres',
+        protocol: 'postgres',
+        dialectOptions: {
+            ssl: {
+                require: true,
+                rejectUnauthorized: false
+            }
+        }
     }
-}
+};

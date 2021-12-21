@@ -21,10 +21,17 @@ if (config.isProd) {
     options = {
         dialect: 'postgres',
         logging: false,
+<<<<<<< HEAD
     };
     options.dialectOptions = {
         ssl: {
             rejectUnauthorized: false
+=======
+        dialectOptions: {
+            ssl: {
+                rejectUnauthorized: false
+            }
+>>>>>>> imp-postgreSQL
         }
     };
 
@@ -43,6 +50,5 @@ const sequelize = new Sequelize(config.dbUrl, options);
 
 setupModels(sequelize); // Crea todas las tables declaradas en pool de modelos
 // sequelize.sync(); // Actualiza y revisa el contenido de bd - Apto solo para ambiente de desarrollo
-
 
 module.exports = sequelize;

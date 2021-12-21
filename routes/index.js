@@ -12,8 +12,8 @@ const ordersRouter = require('./orders.router');
 const routerApi = (app) => {
     const router = express.Router();
 
-    app.get('/', (req, res)=>{
-        res.send("Mi tienda en express");
+    app.get('/', (req, res) => {
+        res.send('Mi tienda en express');
     });
 
     app.use('/api/v1',router);
