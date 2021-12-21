@@ -35,9 +35,9 @@ if (config.isProd) {
     };
 }
 
-// console.log(config.dbUrl);
+console.log(config.dbUrl);
 // console.log(URI);
-// console.log(options, '  \n');
+console.log(options, '  \n');
 
 const sequelize = new Sequelize(config.dbUrl, options);
 
