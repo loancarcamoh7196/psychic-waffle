@@ -20,11 +20,9 @@ let options= {};
 if (config.isProd) {
     options = {
         dialect: 'postgres',
-        native: true,
         logging: false,
         dialectOptions: {
             ssl: {
-                require: true,
                 rejectUnauthorized: false
             }
         }
@@ -45,6 +43,5 @@ const sequelize = new Sequelize(config.dbUrl, options);
 
 setupModels(sequelize); // Crea todas las tables declaradas en pool de modelos
 // sequelize.sync(); // Actualiza y revisa el contenido de bd - Apto solo para ambiente de desarrollo
-
 
 module.exports = sequelize;
