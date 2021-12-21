@@ -35,21 +35,15 @@ const options = {
 
 app.use(cors(options)); // Obliga a toda la app a usar CORS
 
-
-
 routerApi(app);// Router de server
-
 
 app.use(logErrors);// Error en consola
 app.use(ormErrorHandler); // Errores de lib sequelize
 app.use(boomErrorHandler); // Error tipo boom
 app.use(errorHandler);
 
-
-
 app.listen(config.port, () => {
     console.log('😊 Buen día...');
     console.log('El servidor esta en ambiente: ', config.env, ' puerto: ', config.port);
     config.isProd == false && console.log(`Escuchando en: http://localhost:${ config.port } \n`);
-    console.log('PG URI: ',config.dbUrl);
 });
