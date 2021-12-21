@@ -1,5 +1,10 @@
-# psychic-waffle
-Repo dev my-store de Desarrollo Backend con Node JS, Express
-Contiene rama:
-     __dev__  Donde se desarrollo API ( Curso )
-     __imp_postgreSQL__ Donde se implementa postgreSQL al poryecto
+# psychic-waffle 🙂
+Repo dev YardSale (my-store) de Desarrollo Backend con Node JS, Express
+
+Contiene las ramas:
+- **dev**  Donde se desarrollo API ( Curso )
+- **imp_postgreSQL** Donde se implementa postgreSQL al proyecto
+- **passportjs-jwt** Implementación de Autenticación con PassportJS y JWT
+
+Otros proyectos hermanos
+- **frontend del proyecto**: https://github.com/loancarcamoh7196/yardsale_js/tree/dev-react 
