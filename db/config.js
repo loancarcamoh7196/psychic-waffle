@@ -24,6 +24,7 @@ module.exports = {
     production: {
         url: config.dbUrl,
         dialect: 'postgres',
+        protocol: 'postgres',
         dialectOptions: {
             ssl: {
                 require: true,
