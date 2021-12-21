@@ -15,6 +15,10 @@ const URI = `postgres://${USER}:${PASSWORD}@${config.dbHost}:${config.postgres.d
 // const PASSWORD = encodeURIComponent(config.mysql.dbPassword);
 // const URI = `mysql://${USER}:${PASSWORD}@${config.dbHost}:${config.mysql.dbPort}/${config.dbName}`;
 
+console.log(config.dbUrl);
+// console.log(URI);
+console.log(options, '  \n');
+
 module.exports = {
     development: {
         url: URI,
