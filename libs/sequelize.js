@@ -20,11 +20,11 @@ let options= {};
 if (config.isProd) {
     options = {
         dialect: 'postgres',
+        native: true,
         logging: false,
-    };
-    options.dialectOptions = {
-        ssl: {
-            rejectUnauthorized: false
+        ssl: true,
+        dialectOptions: {
+            ssl: true
         }
     };
 
