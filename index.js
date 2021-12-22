@@ -5,6 +5,7 @@ const express = require('express');
 const cors = require('cors');
 
 const routerApi = require('./routes'); // Archivo de Rutas
+const { checkApiKey } = require('./middlewares/auth.handler'); // Middleware de Autentificación
 const { logErrors, errorHandler, ormErrorHandler,boomErrorHandler} = require('./middlewares/error.handler'); // Middleware de Manejo de Errores
 const { config } = require('./config'); // Variables de entorno
 
@@ -34,6 +35,8 @@ const options = {
 };
 
 app.use(cors(options)); // Obliga a toda la app a usar CORS
+
+require('./utils/auth');
 
 routerApi(app);// Router de server
 

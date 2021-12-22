@@ -2,6 +2,7 @@
  * Modelo de Customer para ORM
  */
 const { Model, DataTypes, Sequelize } = require('sequelize');
+const bcrypt = require('bcrypt');
 const { USER_TABLE } = require('./user.model');
 
 const CUSTOMER_TABLE = 'customers';
@@ -59,7 +60,8 @@ class Customer extends Model {
             sequelize,
             tableName: CUSTOMER_TABLE,
             modelName: 'Customer',
-            timestamps: false
+            timestamps: false,
+
         };
     }
 

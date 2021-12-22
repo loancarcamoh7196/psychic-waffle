@@ -9,11 +9,12 @@ class UserService {
 
     /**
      * Crea/Agrega un nuevo Usuario
-     * @param {user} data 
+     * @param {user} data
      * @returns string Resultado de operación
      */
     async create(data) {
         const newUser = await models.User.create(data);
+        delete newUser.dataValues.password;
         return newUser;
     }
 
@@ -36,9 +37,23 @@ class UserService {
      */
     async findOne(id) {
         const user = await models.User.findByPk(id);
-        if(!user) {
-            throw boom.notFound('Usuario no se encuentra registrado');
+        if (!user) {
+            throw boom.notFound(
+                'Usuario no se encuentra registrado'
+            );
         } else return user;
+    }
+
+    /**
+     * Busca usuario por email
+     * @param {string} email Email de usuario
+     * @returns objecto usuario
+     */
+    async findByEmail(email) {
+        const rta = await models.User.findOne({
+            where: { email }
+        });
+        return rta;
     }
 
     /**
