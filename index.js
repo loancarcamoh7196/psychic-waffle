@@ -49,4 +49,5 @@ app.listen(config.port, () => {
     console.log('😊 Buen día...');
     console.log('El servidor esta en ambiente: ', config.env, ' puerto: ', config.port);
     config.isProd == false && console.log(`Escuchando en: http://localhost:${ config.port } \n`);
+    // console.log('JWT Secret: ', config.jwtSecret);
 });

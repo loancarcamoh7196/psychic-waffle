@@ -10,6 +10,8 @@ const config = {
     dbName:  process.env.DB_NAME,
     dbHost:  process.env.DB_HOST,
     dbUrl: process.env.DATABASE_URL,
+    jwtSecret: process.env.JWT_SECRET,
+
     postgres: {
         dbUser:  process.env.PG_USER,
         dbPassword:  process.env.PG_PASSWORD,
