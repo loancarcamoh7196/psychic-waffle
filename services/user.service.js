@@ -27,6 +27,7 @@ class UserService {
         const rta = await models.User.findAll({
             include: ['customer']
         });
+        
         return rta;
     }
 

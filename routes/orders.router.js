@@ -47,7 +47,7 @@ router.post(
 );
 /**
  *  * POST /orders/add-item
- *  Agreda products a la orden
+ *  Agrega products a la orden
  */
 router.post(
     '/add-item', 

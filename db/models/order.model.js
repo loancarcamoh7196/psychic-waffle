@@ -31,19 +31,15 @@ const OrderSchema = {
         defaultValue: Sequelize.fn('NOW')
     },
     
-};
+// };
 
-const virtualField = {
+// const virtualField = {
     total: {
         type: DataTypes.VIRTUAL,
         get() {
-            if (this.items.length() > 0) {
+            if (this.items && this.items.length > 0) {
                 return this.items.reduce((total, item) => {
-                    return (
-                        total +
-                        item.price *
-                            item.OrderProduct.quantity
-                    );
+                    return ( total + item.price * item.OrderProduct.amount );
                 }, 0);
             } else return 0;
         }

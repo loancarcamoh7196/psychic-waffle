@@ -1,5 +1,5 @@
 /**
- * Archivo de Manejo de Variables de Entorno
+ * Archivo de Manejo de Variables de Entorno del Proeycto
  */
 require('dotenv').config();
 
@@ -11,7 +11,8 @@ const config = {
     dbHost:  process.env.DB_HOST,
     dbUrl: process.env.DATABASE_URL,
     jwtSecret: process.env.JWT_SECRET,
-
+    mailUser: process.env.MAIL_USER,
+    mailPassword: process.env.MAIL_PASSWORD,
     postgres: {
         dbUser:  process.env.PG_USER,
         dbPassword:  process.env.PG_PASSWORD,
