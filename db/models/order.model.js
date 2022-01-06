@@ -31,20 +31,20 @@ const OrderSchema = {
         defaultValue: Sequelize.fn('NOW')
     },
     
-// };
+};
 
 // const virtualField = {
-    total: {
-        type: DataTypes.VIRTUAL,
-        get() {
-            if (this.items && this.items.length > 0) {
-                return this.items.reduce((total, item) => {
-                    return ( total + item.price * item.OrderProduct.amount );
-                }, 0);
-            } else return 0;
-        }
-    }
-};
+//     total: {
+//         type: DataTypes.VIRTUAL,
+//         get() {
+//             if (this.items && this.items.length > 0) {
+//                 return this.items.reduce((total, item) => {
+//                     return ( total + item.price * item.OrderProduct.amount );
+//                 }, 0);
+//             } else return 0;
+//         }
+//     }
+// };
 class Order extends Model {
     
     static config(sequelize) {
