@@ -5,7 +5,7 @@ const { models } = require('./../libs/sequelize');
 const boom = require('@hapi/boom');
 
 class CategoryService {
-    constructor() {}
+    
 
     /**
      * Crea/Agrega un nuevo Usuario
