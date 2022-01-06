@@ -6,24 +6,30 @@ const  {USER_TABLE } = require('../models/user.model');
 module.exports = {
   up: async (queryInterface) => {
     const hash = await bcrypt.hash('mio_mio#71', 10);
-    await  queryInterface.bulkInsert(USER_TABLE, [
-        {
-            email: 'root@yardsale.cl',
-            role: 'admin',
-            password: hash,
-            created_at: Sequelize.fn('NOW')
-        },{
-            email: 'lo@yardsale.cl',
-            role: 'seller',
-            password: hash,
-            created_at: Sequelize.fn('NOW')
-        },{
-            email: 'lo@love.cl',
-            password: hash,
-            role: 'customer',
-            created_at: Sequelize.fn('NOW')
-        },
-    ],{});
+    await queryInterface.bulkInsert(
+        USER_TABLE,
+        [
+            {
+                email: 'root@yardsale.cl',
+                password: hash,
+                role: 'admin',
+                created_at: Sequelize.fn('NOW')
+            },
+            {
+                email: 'lo@yardsale.cl',
+                password: hash,
+                role: 'seller',
+                created_at: Sequelize.fn('NOW')
+            },
+            {
+                email: 'lo@love.cl',
+                password: hash,
+                role: 'customer',
+                created_at: Sequelize.fn('NOW')
+            }
+        ],
+        {}
+    );
   },
 
   down: async (queryInterface) => {
