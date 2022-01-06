@@ -20,6 +20,7 @@ module.exports = {
         },{
             email: 'lo@love.cl',
             password: hash,
+            role: 'customer',
             created_at: Sequelize.fn('NOW')
         },
     ],{});
