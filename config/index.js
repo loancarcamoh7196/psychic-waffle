@@ -13,6 +13,7 @@ const config = {
     jwtSecret: process.env.JWT_SECRET,
     mailUser: process.env.MAIL_USER,
     mailPassword: process.env.MAIL_PASSWORD,
+    mailRecoveryToken: process.env.MAIL_RECOVERY,
     postgres: {
         dbUser:  process.env.PG_USER,
         dbPassword:  process.env.PG_PASSWORD,

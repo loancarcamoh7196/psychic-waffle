@@ -54,6 +54,9 @@ class UserService {
         const rta = await models.User.findOne({
             where: { email }
         });
+
+        // delete rta.dataValues.password;
+
         return rta;
     }
 
